@@ -6,6 +6,7 @@ Gestionnaire de budget personnel optimisé créé par les étudiants de G2 Géni
 FONCTIONNALITES A AJOUTEES
 
 I.	CREATION DE COMPTE
+
 Champs du formulaire d’inscription:
 1.	Nom complet
 2.	Email
@@ -21,6 +22,7 @@ Après avoir validé le formulaire de création de compte :
 Si le compte du client n’est pas confirmer il peut accéder au système, à l’entête de la page on place une alerte en rouge indiquant à l’utilisateur que son compte n’est pas encore confirmer, qu’il  doit le confirmer avant d’effectuer certaines opérations ; si il essaie d’accéder à certaines fonctionnalités on l’affiche un message lui rappelant de confirmer son compte avant de continuer l’opération.
 
 II.	CONNEXION
+
 Champs du formulaire de connexion :
 1.	Pseudo
 2.	Mot de passe
@@ -28,9 +30,11 @@ Champs du formulaire de connexion :
 On vérifie les coordonnées fournies par l’utilisateur dans la base de données. Au cas où c’est correct il accède au système dans le cas contraire on l’affiche un message d’erreur indiquant que les informations fournies ne correspondent à aucun utilisateur.
 
 III.	DECONNEXION
+
 La déconnexion du compte concise juste à détruire la session encours ;
 
 IV.	MOT DE PASSE OUBLIE
+
 Cette fonctionnalité, consiste juste à permettre aux utilisateurs qui ont oubliés leur mot de passe à le réinitialiser sans perdre les données de l’utilisateur. Après que l’utilisateur clique sur le lien mot de passe oublié, on l’affiche un formulaire avec un seul champ lui demandant de fournir son adresse email ;
 
 Apres on vérifie si l’email appartient à un utilisateur du système, si l’email existe dans la base de données, le système envoie un lien de réinitialisation du mot de passe à cette adresse email, et on redirige automatiquement l’utilisateur à la page de connexion, tout en l’affichant un message du genre
