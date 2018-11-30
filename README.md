@@ -9,9 +9,13 @@ I.	CREATION DE COMPTE
 
 Champs du formulaire d’inscription:
 1.	Nom complet
+		- verifier que le nom n'est pas vide (required)
 2.	Email
+		- verifier que l'email fournit est valide (respecte les normes) required
 3.	Pseudo 
+		- verifier qu'il soit unique et obligatoire et pas moins de 8 caracteres
 4.	Mot de passe
+		- verifier que le mot de passe contient au minimum 8 caracteres et est obligatoire (! empty)
 5.	Mot de passe de confirmation
 
 Après avoir validé le formulaire de création de compte :
