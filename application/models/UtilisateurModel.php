@@ -9,4 +9,12 @@ class UtilisateurModel extends CI_Model
     {
         $this->db->insert($this->table, $infos);
     }
+
+    public function check_authentification($data)
+    {
+        $this->db->where($data);
+        $q = $this->db->get($this->table);
+        $res = $q->result();
+        return  $res;
+    }
 }

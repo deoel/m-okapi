@@ -5,6 +5,10 @@ class MOkapi extends CI_Controller
 {
     public function index()
     {
+        if($this->session->is_connected)
+        {
+            redirect('utilisateur/accueil');
+        }
         $this->load->view('mokapi_home.php');
     }
 }
