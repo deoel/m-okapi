@@ -15,24 +15,47 @@ class Utilisateur extends CI_Controller
 
     public function nouvel_utilisateur()
     {
-        $nomcomplet = $this->input->post('nomcomplet');
-        $email = $this->input->post('email');
-        $login = $this->input->post('login');
-        $mdp = $this->input->post('mdp');
-        $mdpconf = $this->input->post('mdpconf');
-
-        $data = array(
-            'nomcomplet' => $nomcomplet,
-            'email' => $email,
-            'login' => $login,
-            'mdp' => $mdp,
-            'etat' => FALSE
+        $this->form_validation->set_rules('nomcomplet', 'nomcomplet', 'required|min_length[8]',
+            array('required' => 'Le nom complet est obligatoire',
+                'min_length' => '8 caractères minimum'));
+        $this->form_validation->set_rules('email', 'email', 'required|valid_email', 
+            array('required' => 'Email obligatoire',
+                'valid_email' => 'Email invalide'));
+        $this->form_validation->set_rules('login', 'login','required|min_length[8]',
+            array('required' => 'Login obligatoire',
+                    'min_length' => '8 caractères minimum')
         );
+        $this->form_validation->set_rules('mdp', 'mdp', 'required|min_length[8]',
+        array('required' => 'Mot de passe obligatoire', 'min_length' => '8 caractères minimum'));
+        $this->form_validation->set_rules('mdpconf', 'mdpconf', 'matches[mdp]',
+        array('matches' => 'Mot de passe incohérent'));
 
-        $this->load->model('UtilisateurModel');
-        $this->UtilisateurModel->creer_utilisateur($data);
-    
-        $this->load->view('utilisateur/inscription_success');
+        if($this->form_validation->run())
+        {
+            $nomcomplet = $this->input->post('nomcomplet');
+            $email = $this->input->post('email');
+            $login = $this->input->post('login');
+            $mdp = $this->input->post('mdp');
+            $mdpconf = $this->input->post('mdpconf');
+
+            $data = array(
+                'nomcomplet' => $nomcomplet,
+                'email' => $email,
+                'login' => $login,
+                'mdp' => $mdp,
+                'etat' => FALSE
+            );
+
+            $this->load->model('UtilisateurModel');
+            $this->UtilisateurModel->creer_utilisateur($data);
+        
+            $this->load->view('utilisateur/inscription_success');
+        }
+        else
+        {
+            $this->load->view('utilisateur/form_inscription');
+        }
+        
     }
 
     public function connexion()
@@ -63,8 +86,11 @@ class Utilisateur extends CI_Controller
             $d = array(
                 'error_login' => 'Login ou mot de passe incorrect'
             );
+            
             $this->session->set_flashdata($d);
-            $this->form_authentification();
+            $form_auth = $this->load->view('utilisateur/form_authentification', [], true);
+            $d = array('page' => $form_auth);
+            $this->load->view('mokapi_home', $d);
         }
     }
 
